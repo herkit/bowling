@@ -22,7 +22,7 @@ namespace BowlingScorer
         {
             get
             {
-                return (Score == 10 && Rolls[0] != 10);
+                return (Rolls.Sum() == 10 && Rolls[0] != 10);
             }
         }
 
