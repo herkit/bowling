@@ -54,5 +54,19 @@ namespace BowlingScorer.Tests
             frames[2].Score.ShouldEqual(3);
         }
 
+        [Test]
+        public void Should_score_alternating_strike_and_spare()
+        {
+            var frames = Scorer.ScoreFrames(5, 5, 10, 5, 5, 10, 5, 5, 10, 5, 5, 10, 5, 5, 10, 5, 5).ToList();
+            frames.Sum(f => f.Score).ShouldEqual(200);            
+        }
+
+        [Test]
+        public void Should_score_trailing_spare()
+        {
+            var frames = Scorer.ScoreFrames(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 5, 5).ToList();
+            frames.Sum(f => f.Score).ShouldEqual(20);
+        }
+
     }
 }
