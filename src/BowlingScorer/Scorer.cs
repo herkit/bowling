@@ -11,10 +11,16 @@ namespace BowlingScorer
     {
         public static IEnumerable<Frame> Score(params int[] rolls)
         {
-            yield return new Frame()
+            var offset = 0;
+
+            while (offset < rolls.Length)
             {
-                Score = rolls.Take(2).Sum()
-            };
+                yield return new Frame()
+                {
+                    Score = rolls.Skip(offset).Take(2).Sum()
+                };
+                offset += 2;
+            }
         }
     }
 }
