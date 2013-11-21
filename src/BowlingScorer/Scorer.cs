@@ -15,11 +15,22 @@ namespace BowlingScorer
 
             while (offset < rolls.Length)
             {
-                yield return new Frame()
+                var countRolls = 2;
+                var frameRolls = 2;
+                if (rolls[offset] == 10)
                 {
-                    Score = rolls.Skip(offset).Take(2).Sum()
+                    frameRolls = 1;
+                    countRolls = 3;
+                }
+
+                var frame = new Frame
+                {
+                    Score = rolls.Skip(offset).Take(countRolls).Sum()
                 };
-                offset += 2;
+
+                yield return frame;
+
+                offset += frameRolls;
             }
         }
     }

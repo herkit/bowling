@@ -26,5 +26,14 @@ namespace BowlingScorer.Tests
             frames[1].Score.ShouldEqual(7);
             frames[2].Score.ShouldEqual(2);
         }
+
+        [Test]
+        public void Should_score_strikes()
+        {
+            var frames = Scorer.Score(10, 6, 2).ToList();
+            frames[0].Score.ShouldEqual(18);
+            frames[1].Score.ShouldEqual(8);
+        }
+
     }
 }
