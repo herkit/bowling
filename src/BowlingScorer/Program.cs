@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BowlingScorer.Tests
+namespace BowlingScorer
 {
-    public class Class1
+    public class Program
     {
+        public static void Main()
+        {
+            
+        }
     }
 }
