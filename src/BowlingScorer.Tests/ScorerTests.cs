@@ -76,5 +76,14 @@ namespace BowlingScorer.Tests
             frames.Sum(f => f.Score).ShouldEqual(60);
         }
 
+        [Test]
+        public void Should_include_rolls_in_frame_element()
+        {
+            var frames = Scorer.ScoreFrames(5, 5, 10, 5, 5, 10, 5, 5, 10, 5, 5, 10, 5, 5, 10, 5, 5).ToList();
+            frames[0].Rolls.ShouldEqual(new [] {5, 5} );
+            frames[1].Rolls.ShouldEqual(new [] {10} );
+            frames[9].Rolls.ShouldEqual(new [] {10, 5, 5} );
+        }
+
     }
 }

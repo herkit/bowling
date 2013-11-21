@@ -7,6 +7,7 @@ namespace BowlingScorer
 {
     public class Frame
     {
+        public int[] Rolls { get; set; }
         public int Score { get; set; }
     }
 }
