@@ -68,5 +68,13 @@ namespace BowlingScorer.Tests
             frames.Sum(f => f.Score).ShouldEqual(20);
         }
 
+        [Test]
+        public void Should_ignore_extra_throws_after_game_is_done()
+        {
+            var frames = Scorer.ScoreFrames(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3).ToList();
+            frames.Count.ShouldEqual(10);
+            frames.Sum(f => f.Score).ShouldEqual(60);
+        }
+
     }
 }

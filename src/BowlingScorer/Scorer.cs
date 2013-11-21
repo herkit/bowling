@@ -13,7 +13,7 @@ namespace BowlingScorer
         {
             var offset = 0;
             var frameNo = 1;
-            while (offset < rolls.Length)
+            while (offset < rolls.Length && frameNo < 11)
             {
                 var countRolls = 2;
                 var frameRolls = 2;
