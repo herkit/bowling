@@ -9,5 +9,13 @@ namespace BowlingScorer
     {
         public int[] Rolls { get; set; }
         public int Score { get; set; }
+
+        public bool IsStrike
+        {
+            get
+            {
+                return (Rolls[0] == 10);
+            }
+        }
     }
 }
