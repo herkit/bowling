@@ -35,5 +35,14 @@ namespace BowlingScorer.Tests
             frames[1].Score.ShouldEqual(8);
         }
 
+        [Test]
+        public void Should_score_max()
+        {
+            var frames = Scorer.Score(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10).ToList();
+            frames.Count.ShouldEqual(10);
+            frames[9].Score.ShouldEqual(30);
+            frames.Sum(f => f.Score).ShouldEqual(300);
+        }
+
     }
 }

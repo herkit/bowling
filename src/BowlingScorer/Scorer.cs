@@ -12,14 +12,14 @@ namespace BowlingScorer
         public static IEnumerable<Frame> Score(params int[] rolls)
         {
             var offset = 0;
-
+            var frameNo = 1;
             while (offset < rolls.Length)
             {
                 var countRolls = 2;
                 var frameRolls = 2;
                 if (rolls[offset] == 10)
                 {
-                    frameRolls = 1;
+                    frameRolls = (frameNo == 10) ? 3 : 1;
                     countRolls = 3;
                 }
 
@@ -31,6 +31,7 @@ namespace BowlingScorer
                 yield return frame;
 
                 offset += frameRolls;
+                frameNo++;
             }
         }
     }
