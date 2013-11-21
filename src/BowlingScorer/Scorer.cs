@@ -9,7 +9,7 @@ namespace BowlingScorer
 {
     public class Scorer
     {
-        public static IEnumerable<Frame> Score(params int[] rolls)
+        public static IEnumerable<Frame> ScoreFrames(params int[] rolls)
         {
             var offset = 0;
             var frameNo = 1;
@@ -20,6 +20,10 @@ namespace BowlingScorer
                 if (rolls[offset] == 10)
                 {
                     frameRolls = (frameNo == 10) ? 3 : 1;
+                    countRolls = 3;
+                } 
+                else if (rolls.Skip(offset).Take(2).Sum() == 10)
+                {
                     countRolls = 3;
                 }
 

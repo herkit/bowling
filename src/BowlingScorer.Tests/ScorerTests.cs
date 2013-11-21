@@ -14,14 +14,14 @@ namespace BowlingScorer.Tests
         [Test]
         public void Should_score_first_frame()
         {
-            List<Frame> frames = Scorer.Score(1, 2).ToList();
+            List<Frame> frames = Scorer.ScoreFrames(1, 2).ToList();
             frames[0].Score.ShouldEqual(3);
         }
 
         [Test]
         public void Should_score_three_frames()
         {
-            var frames = Scorer.Score(1, 2, 3, 4, 2, 0).ToList();
+            var frames = Scorer.ScoreFrames(1, 2, 3, 4, 2, 0).ToList();
             frames[0].Score.ShouldEqual(3);
             frames[1].Score.ShouldEqual(7);
             frames[2].Score.ShouldEqual(2);
@@ -30,7 +30,7 @@ namespace BowlingScorer.Tests
         [Test]
         public void Should_score_strikes()
         {
-            var frames = Scorer.Score(10, 6, 2).ToList();
+            var frames = Scorer.ScoreFrames(10, 6, 2).ToList();
             frames[0].Score.ShouldEqual(18);
             frames[1].Score.ShouldEqual(8);
         }
@@ -38,10 +38,20 @@ namespace BowlingScorer.Tests
         [Test]
         public void Should_score_max()
         {
-            var frames = Scorer.Score(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10).ToList();
+            var frames = Scorer.ScoreFrames(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10).ToList();
             frames.Count.ShouldEqual(10);
             frames[9].Score.ShouldEqual(30);
             frames.Sum(f => f.Score).ShouldEqual(300);
+        }
+
+        [Test]
+        public void Should_score_spares()
+        {
+            var frames = Scorer.ScoreFrames(5, 5, 3, 7, 3, 0).ToList();
+            frames.Count.ShouldEqual(3);
+            frames[0].Score.ShouldEqual(13);
+            frames[1].Score.ShouldEqual(13);
+            frames[2].Score.ShouldEqual(3);
         }
 
     }
