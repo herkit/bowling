@@ -91,5 +91,13 @@ namespace BowlingScorer.Tests
             var frame = new Frame {Rolls = new[] {10, 0}, Score = 10};
             frame.IsStrike.ShouldEqual(true);
         }
+
+        [Test]
+        public void Should_be_able_to_query_frame_if_it_is_a_spare()
+        {
+            var frame = new Frame { Rolls = new[] { 5, 5 }, Score = 10 };
+            frame.IsStrike.ShouldEqual(false);
+            frame.IsSpare.ShouldEqual(true);            
+        }
     }
 }

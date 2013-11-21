@@ -17,5 +17,14 @@ namespace BowlingScorer
                 return (Rolls[0] == 10);
             }
         }
+
+        public bool IsSpare
+        {
+            get
+            {
+                return (Score == 10 && Rolls[0] != 10);
+            }
+        }
+
     }
 }
