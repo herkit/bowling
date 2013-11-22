@@ -100,5 +100,24 @@ namespace BowlingScorer.Tests
             frame.IsSpare.ShouldEqual(true);            
         }
 
+        [Test]
+        public void Should_be_able_to_identify_spares_in_last_frame()
+        {
+            var frame = new Frame { Rolls = new[] { 4, 6, 2 } };
+            frame.IsStrike.ShouldEqual(false);
+            frame.IsSpare.ShouldEqual(true);
+        }
+
+
+        [Test]
+        public void ToString_should_return_string_representation_of_frame()
+        {
+            new Frame { Rolls = new [] { 5, 5 } }.ToString().ShouldEqual("5 /");
+            new Frame { Rolls = new [] { 10 } }.ToString().ShouldEqual(" X ");
+            new Frame { Rolls = new [] { 0, 3 } }.ToString().ShouldEqual("0 3");
+            new Frame { Rolls = new [] { 5, 5, 2 } }.ToString().ShouldEqual("5/2");
+            new Frame { Rolls = new[] { 10, 10, 10 } }.ToString().ShouldEqual("XXX");
+        }
+
     }
 }
