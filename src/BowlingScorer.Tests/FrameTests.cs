@@ -33,12 +33,14 @@ namespace BowlingScorer.Tests
         [Test]
         public void ToString_should_return_string_representation_of_frame()
         {
+            new Frame { Rolls = new[] { 5 } }.ToString().ShouldEqual("5  ");
+            new Frame { Rolls = new[] { 0, 3 } }.ToString().ShouldEqual("0 3");
             new Frame { Rolls = new[] { 5, 5 } }.ToString().ShouldEqual("5 /");
             new Frame { Rolls = new[] { 10 } }.ToString().ShouldEqual(" X ");
-            new Frame { Rolls = new[] { 0, 3 } }.ToString().ShouldEqual("0 3");
-            new Frame { Rolls = new[] { 5, 5, 2 } }.ToString().ShouldEqual("5/2");
-            new Frame { Rolls = new[] { 10, 10, 10 } }.ToString().ShouldEqual("XXX");
             new Frame { Rolls = new[] { 10, 10 } }.ToString().ShouldEqual("XX ");
+            new Frame { Rolls = new[] { 5, 5, 2 } }.ToString().ShouldEqual("5/2");
+            new Frame { Rolls = new[] { 10, 5, 5 } }.ToString().ShouldEqual("X5/");
+            new Frame { Rolls = new[] { 10, 10, 10 } }.ToString().ShouldEqual("XXX");
         }
     }
 }
