@@ -42,20 +42,20 @@ namespace BowlingScorer
             var rollsline = "";
             foreach (var frame in frames)
             {
-                if (frame.IsStrike)
-                    rollsline += "X  ";
-                else if (frame.IsSpare)
-                    rollsline += String.Format("{0} /", frame.Rolls[0]);
-                else
-                    rollsline += String.Join(" ", frame.Rolls);
+                rollsline += frame.ToString();
                 rollsline += String.Format(" | ");
 
                 scoreline += String.Format("{0,3}", frame.Score) + " | ";
 
-                Console.Clear();
-                Console.WriteLine(rollsline);
-                Console.WriteLine(scoreline);
             }
+
+            rollsline += " Total ";
+            scoreline += String.Format("  {0,3}  ", frames.Sum(f => f.Score));
+
+            Console.Clear();
+            Console.WriteLine(rollsline);
+            Console.WriteLine(scoreline);
+
         }
     }
 }
