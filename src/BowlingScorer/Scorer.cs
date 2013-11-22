@@ -11,27 +11,28 @@ namespace BowlingScorer
     {
         public static IEnumerable<Frame> ScoreFrames(params int[] rolls)
         {
-            var offset = 0;
+            var frameOffset = 0;
             var frameNo = 1;
-            while (offset < rolls.Length && frameNo < 11)
+            while (frameOffset < rolls.Length && frameNo < 11)
             {
-                var countRolls = 2; var frameRolls = 2;
-                if (rolls[offset] == 10)
+                var rollsInScore = 2; var rollsInFrame = 2;
+                if (rolls[frameOffset] == 10)
                 {
-                    frameRolls = (frameNo == 10) ? 3 : 1; countRolls = 3;
+                    rollsInFrame = (frameNo == 10) ? 3 : 1; 
+                    rollsInScore = 3;
                 } 
-                else if (rolls.Skip(offset).Take(2).Sum() == 10)
-                    countRolls = 3;
+                else if (rolls.Skip(frameOffset).Take(2).Sum() == 10)
+                    rollsInScore = 3;
 
                 var frame = new Frame
                 {
-                    Rolls = rolls.Skip(offset).Take(frameRolls).ToArray(),
-                    Score = rolls.Skip(offset).Take(countRolls).Sum()
+                    Rolls = rolls.Skip(frameOffset).Take(rollsInFrame).ToArray(),
+                    Score = rolls.Skip(frameOffset).Take(rollsInScore).Sum()
                 };
 
                 yield return frame;
 
-                offset += frameRolls;
+                frameOffset += rollsInFrame;
                 frameNo++;
             }
         }
