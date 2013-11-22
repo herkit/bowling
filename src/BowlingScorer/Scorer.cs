@@ -9,16 +9,19 @@ namespace BowlingScorer
 {
     public class Scorer
     {
+        private const int LastFrameIndex = 9;
+        private const int MaxFrameCount = 10;
+
         public static IEnumerable<Frame> ScoreFrames(params int[] rolls)
         {
             var frameOffset = 0;
-            var frameNo = 1;
-            while (frameOffset < rolls.Length && frameNo < 11)
+            var frameIndex = 0;
+            while (frameOffset < rolls.Length && frameIndex < MaxFrameCount)
             {
                 var rollsInScore = 2; var rollsInFrame = 2;
                 if (rolls[frameOffset] == 10)
                 {
-                    rollsInFrame = (frameNo == 10) ? 3 : 1; 
+                    rollsInFrame = (frameIndex == LastFrameIndex) ? 3 : 1; 
                     rollsInScore = 3;
                 } 
                 else if (rolls.Skip(frameOffset).Take(2).Sum() == 10)
@@ -33,7 +36,7 @@ namespace BowlingScorer
                 yield return frame;
 
                 frameOffset += rollsInFrame;
-                frameNo++;
+                frameIndex++;
             }
         }
     }
