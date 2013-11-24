@@ -40,9 +40,7 @@ namespace BowlingScorer
             {
                 rollsline += frame.ToString();
                 rollsline += String.Format(" | ");
-
                 scoreline += String.Format("{0,3}", frame.Score) + " | ";
-
             }
 
             rollsline += " Total ";

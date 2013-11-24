@@ -38,7 +38,7 @@ namespace BowlingScorer
         {
             if (Rolls.Length == 3)
             {
-                var output = (Rolls[0] == 10) ? "X" : Rolls[0].ToString();
+                var output = IsStrike ? "X" : Rolls[0].ToString();
                 output += IsSpare ? "/" : Rolls[2] == 10 ? "X" : Rolls[2].ToString();
                 output += Rolls[2] == 10 ? "X" : Rolls.Skip(1).Take(2).Sum() == 10 ? "/" : Rolls[2].ToString();
                 return output;

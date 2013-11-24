@@ -22,15 +22,20 @@ namespace BowlingScorer
         {
             get
             {
-                return _frames.Count == 10 && LastFrameIsDone();
+                
+                return IsOnLastFrame && LastFrameIsDone;
             }
         }
 
-        private bool LastFrameIsDone()
+        private bool IsOnLastFrame { get { return _frames.Count == 10; } }
+
+        private bool LastFrameIsDone
         {
-            if (_frames[9].IsStrikeOrSpare)
-                return _frames.Last().Rolls.Length == 3;
-            return _frames[9].Rolls.Length == 2;
+            get {
+                if (_frames.Last().IsStrikeOrSpare)
+                    return _frames.Last().Rolls.Length == 3;
+                return _frames.Last().Rolls.Length == 2;
+            }
         }
     }
 }
