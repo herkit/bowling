@@ -12,7 +12,7 @@ namespace BowlingScorer
         public static void Main()
         {
             var gameOn = true;
-            var rolls = new List<int>();
+            var serie = new Serie();
             while (gameOn)
             {
                 Console.WriteLine("Enter roll [0-9] or [S]trike:");
@@ -21,15 +21,11 @@ namespace BowlingScorer
 
                 var roll = "0123456789S".IndexOf(key.KeyChar.ToString().ToUpper());
                 if (roll >= 0)
-                {
-                    rolls.Add(roll);
-                }
+                    serie.AddRoll(roll);
 
-                var frames = Scorer.ScoreFrames(rolls.ToArray()).ToList();
-                
-                PresentFrames(frames);
+                PresentFrames(serie.Frames);
 
-                gameOn = (frames.Count() < 10 || ((frames[9].IsStrike || frames[9].IsSpare) && frames[9].Rolls.Length < 3) );
+                gameOn = !serie.IsDone;
             }
 
             Console.WriteLine("Game finished!");
