@@ -14,32 +14,26 @@ namespace BowlingScorer
 
         public static IEnumerable<Frame> ScoreFrames(params int[] rolls)
         {
-            var frameOffset = 0;
+            var currentRoll = 0;
             var frameIndex = 0;
-            while (frameOffset < rolls.Length && frameIndex < MaxFrameCount)
+            while (currentRoll < rolls.Length && frameIndex < MaxFrameCount)
             {
-                var rollsInScore = 2; var rollsInFrame = 2;
+                var isStrike = rolls[currentRoll] == 10;
+                var isSpare = rolls.Skip(currentRoll).Take(2).Sum() == 10;
+                var isOnLastFrame = frameIndex == LastFrameIndex;
 
-                if (rolls[frameOffset] == 10)
-                {
-                    rollsInFrame = (frameIndex == LastFrameIndex) ? 3 : 1; 
-                    rollsInScore = 3;
-                } 
-                else if (rolls.Skip(frameOffset).Take(2).Sum() == 10)
-                {
-                    rollsInFrame = (frameIndex == LastFrameIndex) ? 3 : 2;
-                    rollsInScore = 3;
-                }
+                var rollsInScore = isStrike || isSpare ? 3 : 2;
+                var rollsInFrame = isStrike ? 1 : 2;
+                if (isOnLastFrame)
+                    rollsInFrame = isStrike || isSpare ? 3 : 2;
 
-                var frame = new Frame
+                yield return new Frame
                 {
-                    Rolls = rolls.Skip(frameOffset).Take(rollsInFrame).ToArray(),
-                    Score = rolls.Skip(frameOffset).Take(rollsInScore).Sum()
+                    Rolls = rolls.Skip(currentRoll).Take(rollsInFrame).ToArray(),
+                    Score = rolls.Skip(currentRoll).Take(rollsInScore).Sum()
                 };
 
-                yield return frame;
-
-                frameOffset += rollsInFrame;
+                currentRoll += rollsInFrame;
                 frameIndex++;
             }
         }
