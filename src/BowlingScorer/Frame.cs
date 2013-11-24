@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BowlingScorer
 {
@@ -14,7 +12,7 @@ namespace BowlingScorer
         {
             get
             {
-                return (Rolls[0] == 10);
+                return (Rolls.First() == 10);
             }
         }
 
@@ -22,7 +20,7 @@ namespace BowlingScorer
         {
             get
             {
-                return (Rolls.Take(2).Sum() == 10 && Rolls[0] != 10);
+                return (Rolls.Take(2).Sum() == 10 && Rolls.ElementAt(0) != 10);
             }
         }
 
@@ -36,11 +34,11 @@ namespace BowlingScorer
 
         public override string ToString()
         {
-            if (Rolls.Length == 3)
+            if (Rolls.Count() == 3)
             {
-                var output = IsStrike ? "X" : Rolls[0].ToString();
-                output += IsSpare ? "/" : Rolls[2] == 10 ? "X" : Rolls[2].ToString();
-                output += Rolls[2] == 10 ? "X" : Rolls.Skip(1).Take(2).Sum() == 10 ? "/" : Rolls[2].ToString();
+                var output = IsStrike ? "X" : Rolls.First().ToString();
+                output += IsSpare ? "/" : Rolls.ElementAt(2) == 10 ? "X" : Rolls.ElementAt(2).ToString();
+                output += Rolls.ElementAt(2) == 10 ? "X" : Rolls.Skip(1).Take(2).Sum() == 10 ? "/" : Rolls.ElementAt(2).ToString();
                 return output;
             }
 
@@ -49,12 +47,12 @@ namespace BowlingScorer
                 
             if (IsStrike)
             {
-                if (Rolls.Length == 1)
+                if (Rolls.Count() == 1)
                     return String.Format(" X ");
-                return "X" + (Rolls[1] == 10 ? "X" : Rolls[1].ToString()) + " ";
+                return "X" + (Rolls.First() == 10 ? "X" : Rolls.ElementAt(1).ToString()) + " ";
             }
 
-            return String.Join(" ", Rolls) + (Rolls.Length == 1 ? "  " : "");
+            return String.Join(" ", Rolls) + (Rolls.Count() == 1 ? "  " : "");
         }
     }
 }

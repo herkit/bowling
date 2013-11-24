@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Versioning;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BowlingScorer
 {
@@ -18,7 +14,7 @@ namespace BowlingScorer
             var frameIndex = 0;
             while (currentRoll < rolls.Length && frameIndex < MaxFrameCount)
             {
-                var isStrike = rolls[currentRoll] == 10;
+                var isStrike = rolls.ElementAt(currentRoll) == 10;
                 var isSpare = rolls.Skip(currentRoll).Take(2).Sum() == 10;
                 var isOnLastFrame = frameIndex == LastFrameIndex;
 
