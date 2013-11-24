@@ -23,6 +23,9 @@ namespace BowlingScorer
                 if (isOnLastFrame)
                     rollsInFrame = isStrike || isSpare ? 3 : 2;
 
+                // TODO: Scorer should trow exception if a frame has rolls that exceeds 10 in total (unless it's the last one)
+                // Example: Scorer.ScoreFrames(4, 7) should throw exception
+
                 yield return new Frame
                 {
                     Rolls = rolls.Skip(currentRoll).Take(rollsInFrame).ToArray(),

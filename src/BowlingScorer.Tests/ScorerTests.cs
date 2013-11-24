@@ -93,8 +93,5 @@ namespace BowlingScorer.Tests
             frames[9].Rolls.ShouldEqual(new [] { 10, 5, 5} );
         }
 
-        // TODO: Scorer should trow exception if a frame has rolls that exceeds 10 in total (unless it's the last one)
-        // Example: Scorer.ScoreFrames(4, 7) should throw exception
-
     }
 }
