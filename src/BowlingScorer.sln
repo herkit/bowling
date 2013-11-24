@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScorer", "BowlingScorer.csproj", "{6AAD3F84-CD50-42B6-8CB2-136253FEAFB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScorer", "BowlingScorer\BowlingScorer.csproj", "{6AAD3F84-CD50-42B6-8CB2-136253FEAFB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScorer.Tests", "..\BowlingScorer.Tests\BowlingScorer.Tests.csproj", "{44770979-AAF6-462E-935A-A2FA344673EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScorer.Tests", "BowlingScorer.Tests\BowlingScorer.Tests.csproj", "{44770979-AAF6-462E-935A-A2FA344673EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BF3590C6-9938-40B1-86B2-6A3B4C0DDFF8}"
 	ProjectSection(SolutionItems) = preProject
