@@ -9,7 +9,7 @@ namespace BowlingScorer
     public class Serie
     {
         public List<Frame> Frames { get { return _frames;  } }
-        private List<int> _rolls = new List<int>();
+        private readonly List<int> _rolls = new List<int>();
         private List<Frame> _frames = new List<Frame>();
 
         public void AddRoll(int roll)
@@ -18,5 +18,19 @@ namespace BowlingScorer
             _frames = Scorer.ScoreFrames(_rolls.ToArray()).ToList();
         }
 
+        public bool IsDone
+        {
+            get
+            {
+                return _frames.Count == 10 && LastFrameIsDone();
+            }
+        }
+
+        private bool LastFrameIsDone()
+        {
+            if (_frames[9].IsStrikeOrSpare)
+                return _frames.Last().Rolls.Length == 3;
+            return _frames[9].Rolls.Length == 2;
+        }
     }
 }

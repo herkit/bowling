@@ -26,6 +26,14 @@ namespace BowlingScorer
             }
         }
 
+        public bool IsStrikeOrSpare
+        {
+            get
+            {
+                return (IsSpare || IsStrike);
+            }
+        }
+
         public override string ToString()
         {
             if (Rolls.Length == 3)
