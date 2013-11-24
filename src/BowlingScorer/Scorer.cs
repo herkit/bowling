@@ -19,13 +19,17 @@ namespace BowlingScorer
             while (frameOffset < rolls.Length && frameIndex < MaxFrameCount)
             {
                 var rollsInScore = 2; var rollsInFrame = 2;
+
                 if (rolls[frameOffset] == 10)
                 {
                     rollsInFrame = (frameIndex == LastFrameIndex) ? 3 : 1; 
                     rollsInScore = 3;
                 } 
                 else if (rolls.Skip(frameOffset).Take(2).Sum() == 10)
+                {
+                    rollsInFrame = (frameIndex == LastFrameIndex) ? 3 : 2;
                     rollsInScore = 3;
+                }
 
                 var frame = new Frame
                 {

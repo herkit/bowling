@@ -69,6 +69,14 @@ namespace BowlingScorer.Tests
         }
 
         [Test]
+        public void Should_give_extra_throw_if_last_frame_is_a_spare()
+        {
+            var frames = Scorer.ScoreFrames(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5).ToList();
+            frames.Last().Rolls.Length.ShouldEqual(3);
+            frames.Sum(f => f.Score).ShouldEqual(15);
+        }
+
+        [Test]
         public void Should_ignore_extra_throws_after_game_is_done()
         {
             var frames = Scorer.ScoreFrames(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3).ToList();
